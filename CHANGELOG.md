@@ -2,6 +2,9 @@
 
 All notable changes to `form-backend-validation` will be documented in this file
 
+## 2.3.4 - 2018-07-29
+- Added: Upload Progress Precent 
+
 ## 2.3.3 - 2018-03-27
 - Changed: Updated errors are now mutated instead of reassigned (fixes reactivity caveats)
 
