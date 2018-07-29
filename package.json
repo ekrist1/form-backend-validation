@@ -6,7 +6,7 @@
   "jsnext:main": "src/index.js",
   "scripts": {
     "build": "rm -rf dist/**/* && npx babel src --out-dir dist",
-    "prepublishOnly": "npm run build",
+    "prepublish": "npm run build",
     "format": "prettier --write \"**/*.{css,js,vue}\""
   },
   "repository": {
