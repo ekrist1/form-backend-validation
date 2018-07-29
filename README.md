@@ -57,6 +57,9 @@ form.post(anUrl)
 // Returns true if request is being executed
 form.processing;
 
+// returns file upload progress
+form.progress
+
 // If there were any validation errors, you easily access them
 
 // Example error response (json)
