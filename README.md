@@ -5,6 +5,8 @@
 [![Build Status](https://img.shields.io/travis/spatie/form-backend-validation/master.svg?style=flat-square)](https://travis-ci.org/spatie/form-backend-validation)
 [![npm](https://img.shields.io/npm/dt/form-backend-validation.svg?style=flat-square)](https://npmjs.com/package/form-backend-validation)
 
+## This project is forked from: https://github.com/spatie/form-backend-validation. This version has added a feature for uploading a file progress. This project is unsupported and used for my own projects.
+
 Wouldn't it be great if you could just use your back end to validate forms on the front end? This package provides a `Form` class does exactly that. It can post itself to a configured endpoint and manage errors. The class meant to be used with a Laravel back end.
 
 Take a look at the [usage section](#usage) to view a detailed example on how to use it.
