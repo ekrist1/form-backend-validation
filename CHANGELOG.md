@@ -2,6 +2,9 @@
 
 All notable changes to `form-backend-validation` will be documented in this file
 
+## 2.3.5 - 2018-08-04
+- Support for passing an optional array to errors.any
+
 ## 2.3.4 - 2018-07-29
 - Added: Upload Progress Precent 
 

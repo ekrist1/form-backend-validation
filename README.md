@@ -15,16 +15,16 @@ The code of this package is based on the [Object-Oriented Forms lesson](https://
 
 ## Install
 
-You can install the package via yarn (or npm):
+You can install the package via npm (or yarn):
 
 ```bash
-$ yarn add form-backend-validation
+$ npm install ekrist1/form-backend-validation
 ```
 
 By default, this package expects `axios` to be installed (unless you're using your own http library, see the [Options](#options) section for that).
 
 ```bash
-$ yarn add axios
+$ npm install axios
 ```
 
 ## Usage
@@ -74,8 +74,9 @@ form.progress
 // and the values array with error message sent by the server
 form.errors.all();
 
-// Returns true if there were any error
+// Returns true if there were any error. Also support for passing an optional array 
 form.errors.any();
+form.errors.any(['first_name', 'last_name', 'email']);
 
 // Returns true if there is an error for the given field name or object
 form.errors.has(key);
