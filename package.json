@@ -1,11 +1,11 @@
 {
   "name": "form-backend-validation",
-  "version": "2.3.6",
+  "version": "2.3.7",
   "description": "An easy way to validate forms using back end logic",
   "main": "dist/index.js",
   "jsnext:main": "src/index.js",
   "scripts": {
-    "build": "rm -rf dist/**/* && npx babel-cli src --out-dir dist",
+    "build": "rm -rf dist/* && npx babel-cli src --out-dir dist",
     "prepare": "npm run build",
     "format": "prettier --write \"**/*.{css,js,vue}\""
   },

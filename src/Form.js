@@ -1,5 +1,5 @@
 import Errors from './Errors';
-import { guardAgainstReservedFieldName, isArray, merge, objectToFormData } from './util';
+import { guardAgainstReservedFieldName, isArray, isFile, merge, objectToFormData } from './util';
 
 class Form {
     /**
@@ -9,7 +9,6 @@ class Form {
      * @param {object} options
      */
     constructor(data = {}, options = {}) {
-        this.progress = 0;
         this.processing = false;
         this.successful = false;
 
@@ -64,7 +63,9 @@ class Form {
             this.onFail = options.onFail;
         }
 
-        this.__http = options.http || window.axios || require('axios');
+        const windowAxios = typeof window === 'undefined' ? false : window.axios
+
+        this.__http = options.http || windowAxios || require('axios');
 
         if (!this.__http) {
             throw new Error(
@@ -208,17 +209,50 @@ class Form {
         });
     }
 
+    /**
+     * @returns {boolean}
+     */
     hasFiles() {
         for (const property in this.initial) {
-            if (this[property] instanceof File || this[property] instanceof FileList) {
+            if (this.hasFilesDeep(this[property])) {
                 return true;
             }
         }
 
         return false;
+    };
+
+    /**
+     * @param {Object|Array} object
+     * @returns {boolean}
+     */
+    hasFilesDeep(object) {
+        if (object === null) {
+            return false;
+        }
+
+        if (typeof object === 'object') {
+            for (const key in object) {
+                if (object.hasOwnProperty(key)) {
+                    if (isFile(object[key])) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        if (Array.isArray(object)) {
+            for (const key in object) {
+                if (object.hasOwnProperty(key)) {
+                    return this.hasFilesDeep(object[key]);
+                }
+            }
+        }
+
+        return isFile(object);
     }
-    
-     config() {
+
+    config() {
         return {
             onUploadProgress: progressEvent => {
                 this.progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -287,7 +321,7 @@ class Form {
         if (requestTypes.indexOf(requestType) === -1) {
             throw new Error(
                 `\`${requestType}\` is not a valid request type, ` +
-                    `must be one of: \`${requestTypes.join('`, `')}\`.`
+                `must be one of: \`${requestTypes.join('`, `')}\`.`
             );
         }
     }
