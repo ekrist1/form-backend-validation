@@ -11,6 +11,7 @@ class Form {
     constructor(data = {}, options = {}) {
         this.processing = false;
         this.successful = false;
+        this.progress = 0;
 
         this.withData(data)
             .withOptions(options)
